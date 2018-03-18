@@ -1,6 +1,7 @@
 package collection.main;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -13,6 +14,9 @@ public class MainTest {
     public static void main(String[] args) {
         List<String> arrs = Arrays.asList("a", "b", "c");
         arrs.iterator().forEachRemaining(element -> System.out.println(element));
+
+        List list = new LinkedList();
+
 
     }
 }
