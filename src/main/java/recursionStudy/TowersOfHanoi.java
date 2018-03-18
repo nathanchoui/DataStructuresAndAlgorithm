@@ -38,6 +38,7 @@ public class TowersOfHanoi {
 
     public void moveDisk(int diskNum, char from, char to, char inter) {
         count ++;
+        // 如果只有一个圆盘，则直接移动。
         if (diskNum == 1) {
             System.out.println("Disk 1 from " + from + " to " + to);
         }
