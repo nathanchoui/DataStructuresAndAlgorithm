@@ -1,6 +1,7 @@
 package collection.queue;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Description: 单向链表的实现。
@@ -22,6 +23,7 @@ public class MySinglyLinkedList<E> extends MyAbstractList<E> {
         private E data;
         private ListNode<E> next;
         public ListNode(int index, E data) {
+            this.index = index;
             this.data = data;
         }
 
@@ -45,8 +47,27 @@ public class MySinglyLinkedList<E> extends MyAbstractList<E> {
         return true;
     }
 
+    // FIXME 有bug
     @Override
     public boolean remove(Object object) {
+        if (object == null || headNode == null) {
+            return false;
+        }
+        ListNode<E> previousNode = null;
+        //Iterator<E> iterator = iterator();
+        ListNode<E> itNode = null;
+        if (headNode.equals((E)object)) {
+            headNode = headNode.next;
+            return true;
+        }
+        previousNode = headNode;
+        itNode = headNode;
+        while ((itNode = itNode.next) != null) {
+            if (itNode.equals((E)object)) {
+                previousNode.next = itNode.next;
+                return true;
+            }
+        }
         return false;
     }
 
@@ -57,12 +78,70 @@ public class MySinglyLinkedList<E> extends MyAbstractList<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new LinkedListIterator();
     }
 
     @Override
     public E get(int i) {
         return null;
+    }
+
+    private class LinkedListIterator implements Iterator<E> {
+
+        private ListNode<E> currentNode = null;
+
+        @Override
+        public boolean hasNext() {
+            if (currentNode == null) {
+                if (headNode == null) {
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+            else {
+                return currentNode.next != null;
+            }
+        }
+
+        /**
+         * Returns the next element in the iteration.
+         *
+         * @return the next element in the iteration
+         * @throws NoSuchElementException if the iteration has no more elements
+         */
+        @Override
+        public E next() {
+            if (currentNode == null) {
+                if (headNode == null) {
+                    throw new NoSuchElementException();
+                }
+                else {
+                    currentNode = headNode;
+                    return currentNode.data;
+                }
+            }
+            if (currentNode.next == null) {
+                throw new NoSuchElementException();
+            }
+            else {
+                currentNode = currentNode.next;
+                return currentNode.data;
+            }
+        }
+    }
+
+    public static void main (String[] args) {
+        MyList<String> list = new MySinglyLinkedList<>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        list.remove("B");
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
     }
 }
 
