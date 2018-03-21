@@ -7,7 +7,7 @@ package collection.queue;
  */
 public abstract class MyAbstractList<E> implements MyList<E> {
 
-    protected static int length = 0;
+    protected int length = 0;
 
     @Override
     public int size() {
