@@ -11,6 +11,8 @@ public class DynamicArray<E> {
 
     private int maxCapacity;
 
+    private int size;
+
     private transient Object[] array;
 
     public DynamicArray() {
@@ -33,7 +35,13 @@ public class DynamicArray<E> {
      * 确保容量
      */
     protected void ensureCapacity() {
+        if (size == maxCapacity) {
 
+        }
+    }
+
+    public int size() {
+        return size;
     }
 
 }
