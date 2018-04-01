@@ -1,5 +1,11 @@
 package collection.stack.homework;
 
+import collection.stack.MySimpleArrayStack;
+import collection.stack.MyStack;
+
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Description:
  * <p>
@@ -9,7 +15,9 @@ public class FixConvertor {
 
     private static final String[] OPERAND = {"+", "-", "*", "/"};
 
+    private static final List<String> START_BRACKETS = Arrays.asList("{", "[", "(");
 
+    private static final List<String> END_BRACKETS = Arrays.asList("}", "]", ")");
     /**
      * 判断是否是合法的中缀表达式
      *
@@ -17,7 +25,22 @@ public class FixConvertor {
      * @return
      */
     public boolean isLeagleExpression(String[] expression) {
-        return false;
+        // 数组长度有冗余
+        MyStack<String> stack = new MySimpleArrayStack<String>(expression.length);
+        for (String ch: expression) {
+            if (START_BRACKETS.contains(ch)) {
+                stack.push(ch);
+            }
+            else if (END_BRACKETS.contains(ch)) {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                else {
+                    stack.pop();
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -39,6 +62,12 @@ public class FixConvertor {
      */
     public Number caculatePostfix(String[] postfixExp) {
         return  null;
+    }
+
+
+    public static void main(String[] args) {
+       FixConvertor fixConvertor = new FixConvertor();
+       System.out.println(fixConvertor.isLeagleExpression(new String[]{"(", "a", ")"}));
     }
 
 
