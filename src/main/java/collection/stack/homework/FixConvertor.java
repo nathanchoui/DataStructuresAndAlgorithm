@@ -3,21 +3,33 @@ package collection.stack.homework;
 import collection.stack.MySimpleArrayStack;
 import collection.stack.MyStack;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Queue;
 
 /**
- * Description:
+ * 中缀表达式：
+ *      (A + B) + (C - D)
+ *
+ *  前缀表达式：
+ *      ++AB-CD
+ *
+ *  后缀表达式：
+ *      AB+CD-+
  * <p>
  * Created by zhangwei on 2018/3/26.
  */
 public class FixConvertor {
 
-    private static final String[] OPERAND = {"+", "-", "*", "/"};
+    private static final List<String> OPERANDS = Arrays.asList("+", "-", "*", "/");
 
     private static final List<String> START_BRACKETS = Arrays.asList("{", "[", "(");
 
     private static final List<String> END_BRACKETS = Arrays.asList("}", "]", ")");
+
+    //private static final List<>
+
     /**
      * 判断是否是合法的中缀表达式
      *
@@ -49,8 +61,19 @@ public class FixConvertor {
      * @return
      */
     public String[] nifix2Postfix(String[] nifixExp) {
+        Queue<String> stack = new ArrayDeque<>();
+        if (!isLeagleExpression(nifixExp)) {
+            return null;
+        }
+        for (String str : nifixExp) {
+            // 判断是否是数字
+            // TODO
+            // 运算符 或者 左括号
+            if (OPERANDS.contains(str)) {
 
+            }
 
+        }
         return null;
     }
 
