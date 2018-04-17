@@ -2,6 +2,7 @@ package collection.queue;
 
 /**
  * 用简单循环数组实现队列，固定大小。
+ * FIXME 113
  * <p>
  * Created by zhangwei on 2018/4/17.
  */
@@ -41,7 +42,14 @@ public class MyCircularArrayQueue<E> implements MyQueue<E> {
      * @param data
      */
     public void add(E data) {
-
+        if (isFull()) {
+            throw new QueueOverflowException("Queue Overflow");
+        }
+        rear = (rear + 1) % capacity;
+        array[rear] = data;
+        if (front == -1) {
+            front = rear;
+        }
     }
 
     /**
