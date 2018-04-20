@@ -1,8 +1,12 @@
 package collection.queue;
 
+import collection.queue.exception.QueueEmptyException;
+import collection.queue.exception.QueueOverflowException;
+
+import java.util.Arrays;
+
 /**
  * 用简单循环数组实现队列，固定大小。
- * FIXME 113
  * <p>
  * Created by zhangwei on 2018/4/17.
  */
@@ -58,7 +62,19 @@ public class MyCircularArrayQueue<E> implements MyQueue<E> {
      * @return
      */
     public E remove() {
-        return null;
+        if (isEmpty()) {
+            throw new QueueEmptyException("Queue Empty");
+        }
+        Object data = array[front];
+        // 此时队列正好是满状态
+        if (front == rear) {
+            front = rear - 1;
+        }
+        // 数组里数据还在，只是移动了头指针。
+        else {
+            front = (front + 1) % capacity;
+        }
+        return (E)data;
     }
 
     /**
@@ -67,7 +83,7 @@ public class MyCircularArrayQueue<E> implements MyQueue<E> {
      * @return
      */
     public E head() {
-        return null;
+        return (E) array[front];
     }
 
     /**
@@ -76,7 +92,7 @@ public class MyCircularArrayQueue<E> implements MyQueue<E> {
      * @return
      */
     public int size() {
-        return 0;
+        return (capacity - front + rear + 1) % capacity;
     }
 
     /**
@@ -85,10 +101,20 @@ public class MyCircularArrayQueue<E> implements MyQueue<E> {
      * @return
      */
     public boolean isEmpty() {
-        return false;
+        return (front == -1);
     }
 
     public boolean isFull() {
-        return false;
+        return ((rear + 1) % capacity == front);
+    }
+
+    @Override
+    public String toString() {
+        return "MyCircularArrayQueue{" +
+                "front=" + front +
+                ", rear=" + rear +
+                ", capacity=" + capacity +
+                ", array=" + Arrays.toString(array) +
+                '}';
     }
 }
