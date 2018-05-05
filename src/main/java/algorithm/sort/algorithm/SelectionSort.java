@@ -1,7 +1,6 @@
-package algorithm.sort;
+package algorithm.sort.algorithm;
 
-import algorithm.sort.Sortable;
-import algorithm.sort.domain.Person;
+import algorithm.sort.algorithm.Sortable;
 
 /**
  * 选择排序法
@@ -9,11 +8,13 @@ import algorithm.sort.domain.Person;
  * <p>
  * Created by zhangwei on 2018/4/20.
  */
-public class SelectionSort<T extends Comparable> implements  Sortable<T> {
+public class SelectionSort<T extends Comparable> implements Sortable<T> {
     /**
      * 排序算法，默认升序排列
      * <p>
      * 对象必须是可比较的
+     *
+     * 每次和最小值比较，比最小值小则交换。
      *
      * @param array 未排序的数组
      */
