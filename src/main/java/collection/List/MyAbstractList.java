@@ -16,7 +16,7 @@ public abstract class MyAbstractList<E> implements MyList<E> {
 
     @Override
     public boolean isEmpty() {
-        return length == 0 ? true : false;
+        return length == 0;
     }
 
 }
