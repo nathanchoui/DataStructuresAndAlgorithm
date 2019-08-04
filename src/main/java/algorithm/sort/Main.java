@@ -1,8 +1,8 @@
 package algorithm.sort;
 
-import algorithm.sort.algorithm.InsertionSort;
-import algorithm.sort.algorithm.SelectionSort;
-import algorithm.sort.algorithm.Sortable;
+import algorithm.sort.algorithm.sort.BubbleSort;
+
+import algorithm.sort.algorithm.sort.Sortable;
 import algorithm.sort.domain.Person;
 
 import java.util.Arrays;
@@ -19,11 +19,11 @@ public class Main {
         Person[] persons = makePersons();
         Sortable<Person> sort = null;
         // 冒泡法
-        // sort = new BubbleSort<>();
+         sort = new BubbleSort<>();
         // 选择法
         // sort = new SelectionSort<>();
         // 插入排序
-        sort = new InsertionSort<>();
+//        sort = new InsertionSort<>();
 
         print(persons, sort);
     }

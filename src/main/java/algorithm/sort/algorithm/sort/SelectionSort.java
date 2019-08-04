@@ -1,6 +1,4 @@
-package algorithm.sort.algorithm;
-
-import algorithm.sort.algorithm.Sortable;
+package algorithm.sort.algorithm.sort;
 
 /**
  * 选择排序法

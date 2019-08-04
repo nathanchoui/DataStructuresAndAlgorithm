@@ -1,4 +1,4 @@
-package algorithm.sort.algorithm;
+package algorithm.sort.algorithm.sort;
 
 /**
  * Description:

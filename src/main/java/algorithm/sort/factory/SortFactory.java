@@ -1,6 +1,6 @@
 package algorithm.sort.factory;
 
-import algorithm.sort.algorithm.Sortable;
+import algorithm.sort.algorithm.sort.Sortable;
 
 /**
  * Description:
